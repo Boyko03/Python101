@@ -16,7 +16,9 @@ class Polynomial(Utls):
 		if len(pol) == 0:
 			return 0
 
-		return ' + '.join(pol)
+		self.modify_pol()
+
+		return' + '.join(pol)
 
 
 
