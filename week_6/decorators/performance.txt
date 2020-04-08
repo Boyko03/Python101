@@ -1,0 +1,1 @@
+test_func was called and took 2.0 seconds to complete
