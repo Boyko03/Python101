@@ -1,5 +1,5 @@
 import unittest
-from task_1 import deep_find_bfs, deep_find_dfs
+from deep_find import deep_find_bfs, deep_find_dfs
 
 
 class DeepFindBfsTests(unittest.TestCase):
