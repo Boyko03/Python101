@@ -62,3 +62,27 @@ def jump(frogs, solution):
             return True
 
     return False
+
+
+def verify(frogs):
+    if frogs.count('_') != 1:
+        raise ValueError('Invalid input')
+
+    if frogs.count('>') == 0 or frogs.count('<') == 0:
+        raise ValueError('Invalid input')
+
+    if frogs.count('>') != frogs.count('<'):
+        raise ValueError('Invalid input.')
+
+    for frog in frogs:
+        if frog not in ['>', '_', '<']:
+            raise ValueError('Invalid input.')
+
+
+def frog(frogs):
+    solution = []
+    verify(frogs)
+    frogs = [frog for frog in frogs]
+    jump(frogs, solution)
+
+    print(''.join(solution))
