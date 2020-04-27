@@ -11,12 +11,8 @@ def ready(frogs):
     return True
 
 
-def add(new_frogs, solution, frogs):
-    if jump(new_frogs, solution):
-        solution.insert(0, f"{''.join(frogs)}\n")
-        return True
-
-    return False
+def add(frogs, solution):
+    solution.insert(0, f"{''.join(frogs)}\n")
 
 
 def swap_frogs(new_frogs, x):
@@ -27,12 +23,11 @@ def swap_frogs(new_frogs, x):
     new_frogs[index] = tmp
 
 
-def frog_jump(frogs, x, solution):
+def frog_jump(frogs, x):
         new_frogs = frogs[:]
         swap_frogs(new_frogs, x)
 
-        if add(new_frogs, solution, frogs):
-            return True
+        return new_frogs
 
 
 def jump(frogs, solution):
@@ -42,19 +37,27 @@ def jump(frogs, solution):
 
     to_str = ''.join(frogs).split('_')
     if to_str[0] != '' and to_str[0][-1] == '>':
-        if frog_jump(frogs, -1, solution):
+        new_frogs = frog_jump(frogs, -1)
+        if jump(new_frogs, solution):
+            add(frogs, solution)
             return True
 
     if len(to_str[0]) > 1 and to_str[0][-2] == '>':
-        if frog_jump(frogs, -2, solution):
+        new_frogs = frog_jump(frogs, -2)
+        if jump(new_frogs, solution):
+            add(frogs, solution)
             return True
 
     if to_str[1] != '' and to_str[1][0] == '<':
-        if frog_jump(frogs, 1, solution):
+        new_frogs = frog_jump(frogs, 1)
+        if jump(new_frogs, solution):
+            add(frogs, solution)
             return True
 
     if len(to_str[1]) > 1 and to_str[1][1] == '<':
-        if frog_jump(frogs, 2, solution):
+        new_frogs = frog_jump(frogs, 2)
+        if jump(new_frogs, solution):
+            add(frogs, solution)
             return True
 
     return False
