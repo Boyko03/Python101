@@ -1,5 +1,5 @@
 import unittest
-from frog import jump, ready, frog_jump, verify
+from frog import jump, ready, verify, swap_frogs
 
 
 class ReadyTests(unittest.TestCase):
@@ -19,11 +19,11 @@ class ReadyTests(unittest.TestCase):
         self.assertTrue(result)
 
 
-class FrogJumpTests(unittest.TestCase):
+class SwapFrogsTests(unittest.TestCase):
     def test_function_swaps_frog_and_empty_place(self):
         frogs = [frog for frog in 'ab_cd']
 
-        frog_jump(frogs, -1)
+        swap_frogs(frogs, -1)
 
         self.assertEqual(''.join(frogs), 'a_bcd')
 
