@@ -42,9 +42,9 @@ SELECT AVG(price)
 
 SELECT maker
     FROM product
-    WHERE type = 'PC'
-    GROUP BY maker
-    HAVING COUNT(maker) >= 3; 
+    JOIN pc
+        ON product.model = pc.model
+    GROUP BY maker HAVING COUNT(*) > 3;
 
 SELECT maker
     FROM product
