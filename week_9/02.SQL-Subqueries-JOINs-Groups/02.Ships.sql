@@ -1,0 +1,51 @@
+SELECT
+    `SHIPS`.`NAME`,
+    `CLASSES`.`COUNTRY`,
+    `CLASSES`.`NUMGUNS`,
+    `SHIPS`.`LAUNCHED`
+    FROM `SHIPS`
+        JOIN `CLASSES`
+            ON `SHIPS`.`CLASS` = `CLASSES`.`CLASS`;
+
+SELECT 
+    `SHIPS`.`NAME`, 
+    `CLASSES`.`COUNTRY`, 
+    `CLASSES`.`NUMGUNS`, 
+    `SHIPS`.`LAUNCHED` 
+    FROM `SHIPS` 
+      JOIN `CLASSES` 
+          ON `SHIPS`.`CLASS` = `CLASSES`.`CLASS`
+UNION
+SELECT
+    `CLASSES`.`CLASS` AS "NAME",
+    `CLASSES`.`COUNTRY`,
+    `CLASSES`.`NUMGUNS`,
+    `SHIPS`.`LAUNCHED`
+    FROM `CLASSES`
+    LEFT OUTER JOIN `SHIPS` 
+        ON `CLASSES`.`CLASS` = `SHIPS`.`CLASS`
+    WHERE(
+        `SHIPS`.`LAUNCHED` IS NULL OR
+        `SHIPS`.`NAME` IS NULL
+        ) AND `CLASSES`.`CLASS` IN (
+            SELECT `CLASSES`.`CLASS`
+            FROM `CLASSES`
+            WHERE `CLASSES`.`CLASS`
+            IN (
+                SELECT `SHIPS`.`NAME`
+                FROM `SHIPS`
+            )
+        ); 
+--
+
+SELECT DISTINCT `NAME`
+    FROM `OUTCOMES`
+    JOIN `BATTLES`
+        ON `OUTCOMES`.`BATTLE` = `BATTLES`.`NAME`
+    WHERE `DATE` >= '1942-01-01';
+
+SELECT `NAME`
+    FROM `SHIPS`
+    LEFT OUTER JOIN `OUTCOMES`
+        ON `SHIPS`.`NAME` = `OUTCOMES`.`SHIP`
+    WHERE `BATTLE` IS NULL;
