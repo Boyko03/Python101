@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            {% block title %}
+            {% endblock %}
+        </title>
+
+        <style type="text/css">
+            body {
+                text-align: center;
+                background-color: hsl(89, 43%, 51%);
+            }
+
+            table {
+                border-collapse: collapse;
+                width: 100%;
+            }
+
+            th, tr {
+                border-bottom: 1px solid #ddd;
+            }
+
+            tr:hover {
+                background-color: hsl(80, 53%, 51%);
+            }
+
+            th, td {
+                padding: 10px;
+                text-align: left;
+            }
+
+            #content {
+                border: 1px solid black;
+                width: 80%;
+                margin-left: auto;
+                margin-right: auto;
+                padding: 5px;
+
+                border-radius: 10px;
+
+                background-color: white;
+                opacity: 0.6;
+            }
+
+            #home {
+                text-decoration: none;
+            }
+
+            #back {
+                text-align: left;
+            }
+
+        </style>
+    </head>
+    <body>
+        <div id="back">
+            <a href="{% url 'education:index' %}">Home</a>
+        </div>
+        <h1><a id="home" href="{% url 'education:courses:list' %}">Courses</a></h1>
+        <div id="content">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </body>
+</html>

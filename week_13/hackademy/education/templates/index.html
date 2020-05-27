@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Education</title>
+
+    <style type="text/css">
+        body {
+            background-color: hsl(89, 43%, 51%);
+        }
+
+        #welcome {
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+    <h1 id="welcome">Welcome to Hackademy!</h1>
+
+    <ul>
+        <li><a href="{% url 'education:courses:list' %}">Courses</a></li>
+    </ul>
+</body>
+</html>
